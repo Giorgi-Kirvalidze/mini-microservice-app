@@ -11,16 +11,16 @@ app.post("/events", async (req, res) => {
   events.push(event);
 
   await axios
-    .post("http://localhost:4000/events", event)
+    .post("http://posts-clusterip-srv:4000/events", event)
     .catch((e) => console.log(e));
   await axios
-    .post("http://localhost:4001/events", event)
+    .post("http://comments-srv:4001/events", event)
     .catch((e) => console.log(e));
   await axios
-    .post("http://localhost:4002/events", event)
+    .post("http://query-srv:4002/events", event)
     .catch((e) => console.log(e));
   await axios
-    .post("http://localhost:4003/events", event)
+    .post("http://moderation-srv:4003/events", event)
     .catch((e) => console.log(e));
   res.send({ status: "OK" });
 });
